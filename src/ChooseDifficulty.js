@@ -1,32 +1,29 @@
 import React from "react";
-import { Routes, Route, Link } from "react-router-dom";
-import Easy from "./Easy";  
-import Medium from "./Medium";  
-import Hard from "./Hard";  
+import { useNavigate } from "react-router-dom";
 
 function ChooseDifficulty() {
+  const navigate = useNavigate();
+
+  const handleDifficultySelection = (difficulty) => {
+    navigate(`/game/${difficulty}`);
+  };
+
   return (
     <div>
       <h1>Choose Difficulty:</h1>
       <nav>
         <ul>
           <li>
-            <Link to="easy">Easy</Link> {/* Corrected link path */}
+            <button onClick={() => handleDifficultySelection("easy")}>Easy</button>
           </li>
           <li>
-            <Link to="medium">Medium</Link> {/* Corrected link path */}
+            <button onClick={() => handleDifficultySelection("medium")}>Medium</button>
           </li>
           <li>
-            <Link to="hard">Hard</Link> {/* Corrected link path */}
+            <button onClick={() => handleDifficultySelection("hard")}>Hard</button>
           </li>
         </ul>
       </nav>
-
-      <Routes>
-        <Route path="easy" element={<Easy />} />  
-        <Route path="medium" element={<Medium />} />  
-        <Route path="hard" element={<Hard />} />  
-      </Routes>
     </div>
   );
 }
